@@ -1,10 +1,31 @@
-import React, { useState } from "react";
-import { Box, Button, Flex, Grid, Text, useToast } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Box, Button, Flex, Grid, Text, useToast, VStack } from "@chakra-ui/react";
 
 const Index = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
+  const [score, setScore] = useState({ X: 0, O: 0 });
   const toast = useToast();
+
+  useEffect(() => {
+    const winner = calculateWinner(board);
+    if (winner) {
+      setScore({ ...score, [winner]: score[winner] + 1 });
+      toast({
+        title: `Player ${winner} won!`,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else if (!board.includes(null)) {
+      toast({
+        title: "Draw!",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }, [board]);
 
   const winner = calculateWinner(board);
 
@@ -51,25 +72,18 @@ const Index = () => {
     setXIsNext(true);
   }
 
-  if (winner) {
-    toast({
-      title: `Player ${winner} won!`,
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-  } else if (!board.includes(null)) {
-    toast({
-      title: "Draw!",
-      status: "info",
-      duration: 3000,
-      isClosable: true,
-    });
-  }
+  const Leaderboard = () => (
+    <VStack align="stretch" mb="8">
+      <Text fontSize="2xl">Leaderboard</Text>
+      <Text fontSize="xl">X (Player 1): {score.X}</Text>
+      <Text fontSize="xl">O (Player 2): {score.O}</Text>
+    </VStack>
+  );
 
   return (
     <Flex direction="column" align="center" justify="center" h="100vh">
-      <Text fontSize="4xl" marginBottom="8">
+      <Leaderboard />
+      <Text fontSize="4xl" mb="8">
         {winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`}
       </Text>
       <Grid templateColumns="repeat(3, 1fr)" gap={6}>
