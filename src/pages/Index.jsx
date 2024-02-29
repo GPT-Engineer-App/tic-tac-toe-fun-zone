@@ -90,21 +90,23 @@ const Index = () => {
   );
 
   return (
-    <Flex direction="column" align="center" justify="center" h="100vh">
+    <Flex h="100vh" direction={{ base: "column", md: "row" }} justify="center" align="center" wrap="wrap">
       <Leaderboard />
-      <Text fontSize="4xl" mb="8">
-        {winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`}
-      </Text>
-      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-        {Array(16)
-          .fill(null)
-          .map((_, i) => (
-            <Box key={i}>{renderSquare(i)}</Box>
-          ))}
-      </Grid>
-      <Button colorScheme="blue" marginTop="8" onClick={resetGame}>
-        New Game
-      </Button>
+      <Flex direction="column" align="center" justify="center" ml={{ md: 8 }}>
+        <Text fontSize="4xl" mb="8">
+          {winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`}
+        </Text>
+        <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+          {Array(16)
+            .fill(null)
+            .map((_, i) => (
+              <Box key={i}>{renderSquare(i)}</Box>
+            ))}
+        </Grid>
+        <Button colorScheme="blue" marginTop="8" onClick={resetGame}>
+          New Game
+        </Button>
+      </Flex>
     </Flex>
   );
 };
