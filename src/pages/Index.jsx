@@ -82,7 +82,7 @@ const Index = () => {
   }
 
   const Leaderboard = () => (
-    <VStack align="stretch" mb="8">
+    <VStack align="stretch" mb="8" border="1px" borderColor="gray.200">
       <Text fontSize="2xl">Leaderboard</Text>
       <Text fontSize="xl">X (Player 1): {score.X}</Text>
       <Text fontSize="xl">O (Player 2): {score.O}</Text>
