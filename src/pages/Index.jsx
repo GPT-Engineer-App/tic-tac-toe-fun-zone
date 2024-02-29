@@ -94,7 +94,7 @@ const Index = () => {
       <Leaderboard />
       <Flex direction="column" align="center" justify="center" ml={{ md: 8 }}>
         <Text fontSize="4xl" mb="8">
-          {winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`}
+          {winner ? `Winner: ${winner}` : `It is now player ${xIsNext ? "X" : "O"}'s turn`}
         </Text>
         <Grid templateColumns="repeat(4, 1fr)" gap={6}>
           {Array(16)
