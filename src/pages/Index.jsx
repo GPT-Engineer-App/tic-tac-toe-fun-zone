@@ -40,7 +40,7 @@ const Index = () => {
 
   function renderSquare(i) {
     return (
-      <Button h="100px" w="100px" fontSize="3xl" colorScheme="teal" onClick={() => handleClick(i)}>
+      <Button h="100px" w="100px" fontSize="3xl" colorScheme={board[i] === "X" ? "red" : board[i] === "O" ? "yellow" : "teal"} onClick={() => handleClick(i)}>
         {board[i]}
       </Button>
     );
