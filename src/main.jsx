@@ -13,10 +13,13 @@ const colors = {
 
 const theme = extendTheme({ colors });
 
+import { ColorModeScript } from "@chakra-ui/react";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ColorModeScript initialColorMode="dark" />
     <ChakraProvider theme={theme}>
       <App />
     </ChakraProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
